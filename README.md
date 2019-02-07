@@ -13,6 +13,9 @@ Clone the repository install the dependencies before running the app. Run `npm i
 For a better user interactivity, the application uses [react-router-dom](https://www.npmjs.com/package/react-router-dom) to listen to changes and manage those changes in the url and update the right components.
 To install it run `npm install --save react-router-dom`
 
+## Issues
+The page has a bug with the `Search component` but has now been solved.
+
 ## Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
