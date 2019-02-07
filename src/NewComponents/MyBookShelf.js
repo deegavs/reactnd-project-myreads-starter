@@ -1,10 +1,11 @@
-import React, { Component } from "react"
+import React from "react"
 import { Link } from 'react-router-dom'
-
+import PropTypes from 'prop-types'
 import Book from "./Book"
 
-class MyBookShelf extends Component {
-  render() {
+//function MyBookShelf(props) {
+  
+const MyBookShelf = ({ books, moveBook}) => {
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -22,11 +23,11 @@ class MyBookShelf extends Component {
                   * on the shelves and if true it keeps and filter out if it's not. 
                   * It then maps out the matches and return them.
                 */}            
-                {this.props.books.filter(book => book.shelf === 'wantToRead').map(book => (
+                {books.filter(book => book.shelf === 'wantToRead').map(book => (
                     <li key={book.id}>
                         <Book 
                             book={book}
-                            moveBook={this.props.moveBook}
+                            moveBook={moveBook}
                             currentBookShelf='wantToRead'
                         />
                     </li>
@@ -39,11 +40,11 @@ class MyBookShelf extends Component {
             <h2 className="bookshelf-title">Currently Reading</h2>
             <div className="bookshelf-books">
               <ol className="books-grid">            
-                {this.props.books.filter(book => book.shelf === 'currentlyReading').map(book => (
+                {books.filter(book => book.shelf === 'currentlyReading').map(book => (
                     <li key={book.id}>
                         <Book 
                             book={book}
-                            moveBook={this.props.moveBook}
+                            moveBook={moveBook}
                             currentBookShelf='currentlyReading'
                         />
                     </li>
@@ -56,11 +57,11 @@ class MyBookShelf extends Component {
               <h2 className="bookshelf-title">Read</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
-                {this.props.books.filter(book => book.shelf === 'read').map(book => (
+                {books.filter(book => book.shelf === 'read').map(book => (
                     <li key={book.id}>
                         <Book 
                             book={book}
-                            moveBook={this.props.moveBook}
+                            moveBook={moveBook}
                             currentBookShelf='read'
                         />
                     </li>
@@ -79,7 +80,12 @@ class MyBookShelf extends Component {
         </div>
       </div>
     );
-  }
+  
+}
+
+MyBookShelf.propTypes = {
+	books: PropTypes.array.isRequired,
+	moveBook: PropTypes.func.isRequired,
 }
 
 export default MyBookShelf

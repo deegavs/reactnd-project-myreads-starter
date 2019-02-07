@@ -1,10 +1,10 @@
-import React, { Component } from "react"
+import React from "react"
+import PropTypes from 'prop-types'
 
+const Book = ({moveBook, currentBookShelf, book}) => {
 
-class Book extends Component {
-  render() {
-    let booksThumbnail = this.props.book.imageLinks ? 
-      this.props.book.imageLinks.thumbnail: ''
+    let booksThumbnail = book.imageLinks ? 
+      book.imageLinks.thumbnail: ''
     return (
       <div className="book">
         <div className="book-top">
@@ -18,10 +18,10 @@ class Book extends Component {
         </div>
         <div className="book-shelf-changer">
             <select 
-              onChange={(event) => this.props.moveBook(
-                this.props.book, event.target.value
+              value={currentBookShelf}
+              onChange={(event) => moveBook(
+                book, event.target.value
               )}
-              value={this.props.currentBookShelf}
             >
               <option value="move" disabled>
                 Move to...
@@ -33,11 +33,17 @@ class Book extends Component {
             </select>
         </div>
         </div>
-        <div className="book-title">{this.props.book.title}</div>
-        <div className="book-authors">{this.props.book.authors}</div>
+        <div className="book-title">{book.title}</div>
+        <div className="book-authors">{book.authors}</div>
       </div>
     );
-  }
+  
 }
+
+Book.propTypes = {
+	book: PropTypes.object.isRequired,
+	moveBook: PropTypes.func.isRequired,
+	currentBookShelf: PropTypes.string.isRequired
+};
 
 export default Book
